@@ -25,6 +25,9 @@ public interface OrdenServicioRepository extends JpaRepository<OrdenServicio, Lo
     @Query("select o from OrdenServicio o where o.id = :id")
     Optional<OrdenServicio> buscarParaActualizar(@Param("id") Long id);
 
+    @Query("select o.vehiculo.id from OrdenServicio o where o.id = :id")
+    Optional<Long> buscarVehiculoId(@Param("id") Long id);
+
     @Query(value = "select orden_numero_seq.nextval from dual", nativeQuery = true)
     Long siguienteNumero();
 }

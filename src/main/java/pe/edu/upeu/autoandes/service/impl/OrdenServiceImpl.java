@@ -88,7 +88,9 @@ public class OrdenServiceImpl implements OrdenService {
 
     @Transactional
     public OrdenResponseDTO anular(Long id, AnularOrdenRequestDTO request) {
-        Long vehiculoId = obtener(id).getVehiculo().getId();
+        // La consulta escalar evita cargar un estado anterior mientras se espera el bloqueo.
+        Long vehiculoId = ordenes.buscarVehiculoId(id).orElseThrow(
+                () -> new RecursoNoEncontradoException("Orden no encontrada: " + id));
         vehiculos.buscarParaActualizar(vehiculoId).orElseThrow(
                 () -> new RecursoNoEncontradoException("Vehiculo no encontrado: " + vehiculoId));
         OrdenServicio orden = ordenes.buscarParaActualizar(id).orElseThrow(
