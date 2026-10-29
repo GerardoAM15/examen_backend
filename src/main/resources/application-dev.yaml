@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:oracle:thin:@//localhost:1521/xepdb1}
+    username: ${DB_USERNAME:AUTODB}
+    password: ${DB_PASSWORD:1234567}
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+app:
+  jwt:
+    # Clave exclusiva para desarrollo; en produccion se exige JWT_SECRET.
+    secret: ${JWT_SECRET:YXV0b2FuZGVzLWRlc2Fycm9sbG8tMjAyNi1jbGF2ZS1sb2NhbC0zMmJ5dGVz}
+
