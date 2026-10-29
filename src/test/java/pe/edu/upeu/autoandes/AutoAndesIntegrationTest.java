@@ -47,13 +47,13 @@ class AutoAndesIntegrationTest {
     }
 
     @Test void loginContrasenasYToken() throws Exception {
-        var correcto = call("POST", "/auth/login", null, Map.of("username", "admin", "password", "Auto2026*"), 200);
+        var correcto = call("POST", "/auth/login", null, Map.of("username", "admin", "password", "admin123"), 200);
         assertThat(correcto.path("tipo").asText()).isEqualTo("Bearer");
         assertThat(correcto.path("expiraEnSegundos").asLong()).isEqualTo(3600);
         assertThat(correcto.has("password")).isFalse();
-        var desconocido = call("POST", "/auth/login", null, Map.of("username", "nadie", "password", "Auto2026*"), 401);
+        var desconocido = call("POST", "/auth/login", null, Map.of("username", "nadie", "password", "nadie123"), 401);
         var incorrecto = call("POST", "/auth/login", null, Map.of("username", "admin", "password", "incorrecta"), 401);
-        var inactivo = call("POST", "/auth/login", null, Map.of("username", "inactivo", "password", "Auto2026*"), 401);
+        var inactivo = call("POST", "/auth/login", null, Map.of("username", "inactivo", "password", "inactivo123"), 401);
         assertThat(desconocido.path("mensaje").asText()).isEqualTo(incorrecto.path("mensaje").asText())
                 .isEqualTo(inactivo.path("mensaje").asText());
         call("POST", "/auth/login", null, Map.of(), 400);
@@ -216,7 +216,7 @@ class AutoAndesIntegrationTest {
 
     private long id(String sql) { return jdbc.queryForObject(sql, Long.class); }
     private String login(String username) throws Exception {
-        return call("POST", "/auth/login", null, Map.of("username", username, "password", "Auto2026*"), 200).path("token").asText();
+        return call("POST", "/auth/login", null, Map.of("username", username, "password", username + "123"), 200).path("token").asText();
     }
     private JsonNode call(String method, String ruta, String token, Object body, int status) throws Exception {
         var builder = HttpRequest.newBuilder(URI.create("http://localhost:" + port + "/api/v1" + ruta))

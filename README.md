@@ -38,20 +38,20 @@ Para ejecutarlo: `java -jar target/autoandes-backend-1.0.0.jar`.
 
 ## Usuarios de prueba
 
-Todos usan la contraseña **Auto2026***. La contraseña de Oracle es distinta de la contraseña del login.
-Los hashes BCrypt ya estan en la migracion; nunca se devuelven en el API.
+Cada usuario usa su nombre seguido de 123 (por ejemplo, admin123). La contraseña de Oracle es distinta de la contraseña del login.
+Los hashes BCrypt estan en las migraciones V1 y V2; nunca se devuelven en el API.
 
-| Usuario | Rol | Estado |
-| --- | --- | --- |
-| admin | ADMIN | Activo |
-| asesor | ASESOR | Activo |
-| jefe | JEFE_TALLER | Activo |
-| inactivo | ASESOR | Inactivo; login responde 401 |
+| Usuario | Contraseña | Rol | Estado |
+| --- | --- | --- | --- |
+| admin | admin123 | ADMIN | Activo |
+| asesor | asesor123 | ASESOR | Activo |
+| jefe | jefe123 | JEFE_TALLER | Activo |
+| inactivo | inactivo123 | ASESOR | Inactivo; login responde 401 |
 
 Login:
 
 ```json
-{ "username": "asesor", "password": "Auto2026*" }
+{ "username": "asesor", "password": "asesor123" }
 ```
 
 `POST /api/v1/auth/login` devuelve:

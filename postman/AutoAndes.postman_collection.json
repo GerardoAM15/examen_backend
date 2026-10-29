@@ -119,7 +119,7 @@
             "url": "{{baseUrl}}/auth/login",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"Auto2026*\"\n}",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -157,7 +157,7 @@
             "url": "{{baseUrl}}/auth/login",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"asesor\",\n  \"password\": \"Auto2026*\"\n}",
+              "raw": "{\n  \"username\": \"asesor\",\n  \"password\": \"asesor123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -195,7 +195,7 @@
             "url": "{{baseUrl}}/auth/login",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"jefe\",\n  \"password\": \"Auto2026*\"\n}",
+              "raw": "{\n  \"username\": \"jefe\",\n  \"password\": \"jefe123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -233,7 +233,7 @@
             "url": "{{baseUrl}}/auth/login",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"inactivo\",\n  \"password\": \"Auto2026*\"\n}",
+              "raw": "{\n  \"username\": \"inactivo\",\n  \"password\": \"inactivo123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
