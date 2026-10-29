@@ -1,6 +1,7 @@
 package pe.edu.upeu.autoandes.config;
 
 import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,7 +22,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, JwtService jwt, UserDetailsService usuarios,
             RestAuthenticationEntryPoint entry, RestAccessDeniedHandler denied,
-            CorsConfigurationSource cors) throws Exception {
+            @Qualifier("corsConfigurationSource") CorsConfigurationSource cors) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable).httpBasic(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)

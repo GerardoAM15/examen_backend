@@ -16,6 +16,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import pe.edu.upeu.autoandes.dto.ErrorResponseDTO;
 
 @RestControllerAdvice
@@ -34,6 +36,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RecursoNoEncontradoException.class)
     ResponseEntity<ErrorResponseDTO> noEncontrado(RuntimeException ex, HttpServletRequest req) {
         return error(HttpStatus.NOT_FOUND, ex.getMessage(), req);
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    ResponseEntity<ErrorResponseDTO> rutaNoEncontrada(NoResourceFoundException ex, HttpServletRequest req) {
+        return error(HttpStatus.NOT_FOUND, "Ruta no encontrada", req);
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    ResponseEntity<ErrorResponseDTO> metodoNoPermitido(HttpRequestMethodNotSupportedException ex, HttpServletRequest req) {
+        return error(HttpStatus.METHOD_NOT_ALLOWED, "Metodo HTTP no permitido", req);
     }
 
     @ExceptionHandler(ReglaNegocioException.class)
